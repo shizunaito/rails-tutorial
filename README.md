@@ -1,0 +1,1 @@
+rails tutorialの『sample_app』を作成します
