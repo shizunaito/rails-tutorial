@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'pry'
 
 class UsersSignupTest < ActionDispatch::IntegrationTest
 
@@ -27,7 +26,6 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                           password: "password",
                           password_confirmation: "password" }}
     end
-    #binding.pry
     follow_redirect!
     assert_template 'users/show'
     assert is_logged_in?
