@@ -7,7 +7,7 @@ class PictureUploader < CarrierWave::Uploader::Base
   if Rails.env.production?
     storage :aws
   else
-    storage :File
+    storage :file
   end
 
   # Include RMagick or MiniMagick support:
