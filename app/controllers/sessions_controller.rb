@@ -21,6 +21,15 @@ class SessionsController < ApplicationController
     end
   end
 
+  def create_with_api
+    @user = User.find_by(email: params[:email].downcase)
+    if @user && @user.authenticate(params[:password])
+      render "authed"
+    else
+      render "unauthed"
+    end
+  end
+
   def destroy
     log_out if logged_in?
     redirect_to root_url

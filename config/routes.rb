@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
 
   scope :api, format: 'json' do
+    post '/auth', to: 'sessions#create_with_api'
     resources :users do
       member do
         get :following, :followers
