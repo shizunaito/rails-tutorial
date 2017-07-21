@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  require 'jwt'
+
   def new
   end
 
@@ -24,7 +26,12 @@ class SessionsController < ApplicationController
   def create_with_api
     @user = User.find_by(email: params[:email].downcase)
     if @user && @user.authenticate(params[:password])
-      render "authed"
+      if @user.activated?
+        @token = JWT.encode params, Rails.application.secrets.secret_token_key, 'HS256'
+        render "authed"
+      else
+        render json: { message: "Please check email." }
+      end
     else
       render "unauthed"
     end

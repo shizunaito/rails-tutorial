@@ -1,2 +1,2 @@
 json.user @user, :id, :name
-json.token "successful!"
+json.token @token
