@@ -27,7 +27,8 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:email].downcase)
     if @user && @user.authenticate(params[:password])
       if @user.activated?
-        @token = JWT.encode params, Rails.application.secrets.secret_token_key, 'HS256'
+        payload = { email: params[:email], password: params[:password] }
+        @token = JWT.encode payload, Rails.application.secrets.secret_token_key, 'HS256'
         render "authed"
       else
         render json: { message: "Please check email." }
