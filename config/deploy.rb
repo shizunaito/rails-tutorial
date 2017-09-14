@@ -1,6 +1,3 @@
-# config valid only for current version of Capistrano
-lock "3.9.0"
-
 set :application, "sample_app"
 set :repo_url, "https://github.com/shizunaito/rails-tutorial.git"
 set :branch, "master"
