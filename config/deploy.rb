@@ -1,7 +1,7 @@
 set :application, "sample_app"
 set :repo_url, "https://github.com/shizunaito/rails-tutorial.git"
 set :branch, "master"
-set :rails_env, 'production'
+set :rails_env, "production"
 
 task :start do
   on roles(:web) do
