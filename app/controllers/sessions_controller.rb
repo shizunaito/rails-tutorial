@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  require 'jwt'
+
   def new
   end
 
@@ -18,6 +20,21 @@ class SessionsController < ApplicationController
     else
       flash.now[:danger] = 'Invalid email/password combination'
       render 'new'
+    end
+  end
+
+  def create_with_api
+    @user = User.find_by(email: params[:email].downcase)
+    if @user && @user.authenticate(params[:password])
+      if @user.activated?
+        payload = { email: params[:email], password: params[:password] }
+        @token = JWT.encode payload, Rails.application.secrets.secret_token_key, 'HS256'
+        render "authed"
+      else
+        render json: { message: "Please check email." }
+      end
+    else
+      render "unauthed"
     end
   end
 

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  require 'jwt'
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy,
                                         :following, :followers]
   before_action :correct_user, only: [:edit, :update]
@@ -14,6 +15,9 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to root_url and return unless @user.activated? }
       format.json
+        @decode_token = JWT.decode request.headers[:token],
+                        Rails.application.secrets.secret_token_key,
+                        true, algorithm: 'HS256'
     end
   end
 

@@ -1,4 +1,5 @@
 json.(@user, :id, :name)
+json.decode @decode_token
 
 json.following @user.following.count
 json.followers @user.followers.count
