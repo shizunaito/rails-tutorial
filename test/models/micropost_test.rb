@@ -29,4 +29,10 @@ class MicropostTest < ActiveSupport::TestCase
   test "order should be most recent first" do
     assert_equal microposts(:most_recent), Micropost.first
   end
+
+  test "request to responding micropostas too much" do
+    assert_raises(Errors::InvalidFeedLengthError) do
+      Micropost.get_rand_microposts(100);
+    end
+  end
 end
