@@ -29,5 +29,6 @@ Rails.application.routes.draw do
       end
     end
     resources :microposts, only: [:create, :destroy]
+    get '/random', to: 'random_feeds#show'
   end
 end
