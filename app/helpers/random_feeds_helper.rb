@@ -1,0 +1,2 @@
+module RandomFeedsHelper
+end
