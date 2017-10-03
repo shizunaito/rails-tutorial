@@ -32,7 +32,8 @@ class MicropostTest < ActiveSupport::TestCase
 
   test "request to responding micropostas too much" do
     assert_raises(Errors::InvalidFeedLengthError) do
-      Micropost.get_rand_microposts(100);
+      Micropost.get_rand_microposts(100)
     end
   end
+
 end
