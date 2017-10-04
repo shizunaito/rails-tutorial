@@ -30,6 +30,6 @@ Rails.application.routes.draw do
     end
     resources :microposts, only: [:create, :destroy]
     get '/random', to: 'random_feeds#show'
-    get '/user/:id', to: 'users#userinfo'
+    get '/user/:id', to: 'users#userinfo', as: 'userinfo'
   end
 end
