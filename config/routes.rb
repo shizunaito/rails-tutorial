@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     resources :users do
       member do
         get :following, :followers
+        get :profile, to: 'users#userinfo'
       end
     end
     resources :microposts, only: [:create, :destroy]
