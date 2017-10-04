@@ -6,7 +6,7 @@ class UsersUserinfoTest < ActionDispatch::IntegrationTest
   end
 
   test "get user information through userinfo api" do
-    get userinfo_path(@user)
+    get profile_user_path(@user)
     assert_match "id", response.body
     assert_match "name", response.body
     assert_match "Michael Example", response.body

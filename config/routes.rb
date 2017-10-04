@@ -26,10 +26,10 @@ Rails.application.routes.draw do
     resources :users do
       member do
         get :following, :followers
+        get :profile, to: 'users#userinfo'
       end
     end
     resources :microposts, only: [:create, :destroy]
     get '/random', to: 'random_feeds#show'
-    get '/user/:id', to: 'users#userinfo', as: 'userinfo'
   end
 end
